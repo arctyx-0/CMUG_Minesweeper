@@ -1,1 +1,1 @@
-# CMUG_Minesweeper
+# CMUG Minesweeper
