@@ -62,11 +62,11 @@ def onMousePress(x, y):
                 Label('boom', squares[i].centerX, squares[i].centerY, size=20)
             elif numbers[i] > 0:
                 Label(str(numbers[i]), squares[i].centerX, squares[i].centerY, size=20)
-            else: #clearing an area (no 0 squares next to a unrevealed square) 90% working
+            else: #clearing an area (no 0 squares next to a unrevealed square)
                 for j in [-1, 1, -cols, cols, -cols-1, -cols+1, cols-1, cols+1]: #checks the fucking surrounding squares
                     adjTile = i + j
                     print(adjTile)
-                    if adjTile>(len(topSquares)-1) or adjTile<0: break
+                    if adjTile>(len(topSquares)-1) or adjTile<0: continue
                     if not mines[adjTile] and abs((adjTile % cols) - (i % cols)) <= 1 and topSquares[adjTile].visible == True:
                         onMousePress(topSquares[adjTile].centerX,topSquares[adjTile].centerY)
                 
