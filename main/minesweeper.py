@@ -38,10 +38,10 @@ def generateMines():
       if mines[i]:
           continue
       count = 0
-      for j in [-1, 1, -10, 10, -11, -9, 9, 11]:
+      for j in [-1, 1, -10, 10, -11, -9, 9, 11]: #checks the fucking surrounding squares
           check = i + j
-          if 0 <= check < 100 and mines[check]:
-            if abs((check % 10) - (i % 10)) <= 1:
+          if 0 <= check < 100 and mines[check]:#checks to see if squares exist
+            if abs((check % 10) - (i % 10)) <= 1:#prevents wrapping for detection
                 count += 1
       numbers[i] = count
 
