@@ -1,28 +1,61 @@
 from cmu_graphics import *
+import random
 
 # app variables
 app.height = 500
 app.background = "gray"
 
-squareNum = 0
-squareNumText = f"topSquare{squareNum}"
-bSquareNumText = f"bSquare{squareNum}"
+squares = []
+topSquares = []
+mines = []
+numbers = []
 
 def generateBoard():
-    global squareNumText, squareNum
+    num = 0
+    y = 100
     for i in range(10):
-      ymodifier = i*40
-      for j in range(10):
-          xmodifier = j*40
-          globals()[bSquareNumText] = Rect(0+xmodifier,100+ymodifier,40,40,fill="gold",border="gray",borderWidth=1)
-          globals()[squareNumText] = Rect(0+xmodifier,100+ymodifier,40,40,fill="darkGray",border="gray",borderWidth=1)
-          squareNum += 1
-          squareNumText = f"topSquare{squareNum}"
-          bSquareNumText = f"bSquare{squareNum}"
+        x = 0
+        for j in range(10):
+            gold = Rect(x, y, 40, 40, fill='gold', border='gray')
+            gray = Rect(x, y, 40, 40, fill='darkGray', border='gray')
+            squares.append(gold)
+            topSquares.append(gray)
+            x += 40
+            num += 1
+        y += 40
+
+def generateMines():
+  for i in range(100):
+    mines.append(False)
+    numbers.append(0)
+  placed = 0
+  while placed < 15:
+      r = random.randint(0,99)
+      if not mines[r]:
+          mines[r] = True
+          placed += 1
+  for i in range(100):
+      if mines[i]:
+          continue
+      count = 0
+      for j in [-1, 1, -10, 10, -11, -9, 9, 11]:
+          check = i + j
+          if 0 <= check < 100 and mines[check]:
+            if abs((check % 10) - (i % 10)) <= 1:
+                count += 1
+      numbers[i] = count
 
 def onMousePress(x, y):
-   print(x, y)
+    for i in range(100):
+        if topSquares[i].contains(x, y):
+            topSquares[i].visible = False
+            if mines[i]:
+                Label('boom', squares[i].centerX, squares[i].centerY, size=20)
+            elif numbers[i] > 0:
+                Label(str(numbers[i]), squares[i].centerX, squares[i].centerY, size=20)
+            break
+
 
 generateBoard()
-
+generateMines()
 cmu_graphics.run() # type: ignore
