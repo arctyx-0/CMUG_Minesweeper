@@ -1,6 +1,10 @@
 from cmu_graphics import *
+import time
 import random
 import sys
+import os
+
+os.system("clear")
 
 sys.setrecursionlimit(1000)
 
@@ -18,6 +22,20 @@ mines = []
 numbers = []
 
 
+
+def drawTimer():
+    background = Rect(
+        0,0,
+        400,95,
+        fill=rgb(175,175,175)
+    )
+    borderBottom = Rect(
+        0,90,
+        400,10,
+        fill=rgb(100,100,100)
+    )
+
+    
 
 def generateBoard():
     num = 0
@@ -72,7 +90,13 @@ def onMousePress(x, y):
                 
             break
 
+def onKeyRelease(key):
+    if key == 'r':
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
 
 generateBoard()
 generateMines()
+drawTimer()
 cmu_graphics.run() # type: ignore
