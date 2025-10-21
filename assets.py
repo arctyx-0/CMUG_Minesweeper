@@ -40,7 +40,7 @@ class Assets:
         mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
         return mineSprite
     
-    def flag(x, y, scale) -> Group:
+    def flag(x: int, y: int, scale: float) -> Group:
         raise NotImplementedError("Sprite in development")
         
         '''flagSpirte = Group(  )
