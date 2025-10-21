@@ -5,7 +5,7 @@ from cmu_graphics import Group, Circle, Line
 
 @dataclass
 class Assets:
-    def drawMine() -> Group:
+    def mine() -> Group:
         mineBody = Circle(
           200,200,
           100
@@ -40,7 +40,7 @@ class Assets:
         mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
         return mineSprite
     
-    def drawFlag():
+    def flag():
         raise NotImplementedError("Sprite in development")
         
         '''flagSpirte = Group(  )
