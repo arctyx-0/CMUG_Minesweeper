@@ -5,42 +5,42 @@ from cmu_graphics import Group, Circle, Line
 
 @dataclass
 class Assets:
-    def mine() -> Group:
+    def  mine(x, y, scale) -> Group:
         mineBody = Circle(
-          200,200,
-          100
+            x,y,
+            100*scale
         )
         mineSpoke_NS = Line(
-            200,50,
-            200,350,
-            lineWidth=20
+            x,y-(150*scale),
+            x,y+(150*scale),
+            lineWidth=20*(scale*1.4)
         )
         mineSpoke_EW = Line(
-            50,200,
-            350,200,
-            lineWidth=20
+            x-150*scale,y,
+            x+150*scale,y,
+            lineWidth=20*(scale*1.4)
         )
         mineSpoke_NWSE = Line(
-            100,100,
-            300,300,
-            lineWidth=20
+            x-100*scale,y-100*scale,
+            x+100*scale,y+100*scale,
+            lineWidth=20*(scale*1.4)
         )
         mineSpoke_NESW = Line(
-            300,100,
-            100,300,
-            lineWidth=20
+            x+100*scale,y-100*scale,
+            x-100*scale,y+100*scale,
+            lineWidth=20*(scale*1.4)
         )
         reflection = Circle(
-            random.randint(mineBody.centerX-50,mineBody.centerX+50),
-            random.randint(mineBody.centerY-50,mineBody.centerY+50),
-            30,
+            random.randint(int(x-50*scale),int(x+50*scale)),
+            random.randint(int(y-50*scale),int(y+50*scale)),
+            30*(scale*0.9),
             fill="white"
         )
         
         mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
         return mineSprite
     
-    def flag():
+    def flag(x, y, scale) -> Group:
         raise NotImplementedError("Sprite in development")
         
         '''flagSpirte = Group(  )
