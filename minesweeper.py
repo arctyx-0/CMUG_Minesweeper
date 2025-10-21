@@ -1,4 +1,7 @@
 from cmu_graphics import *
+from colors import colors
+from utils import Utils
+
 import time
 import random
 import sys
@@ -22,20 +25,46 @@ mines = []
 numbers = []
 
 
+restartLabel: str = ":3"
+def drawTopBar():
+    def magicLengthReducer1(x):
+        # reduces file length. !! USE WITH THE UNPACKING OPERATOR !!
+        returnList = [
+            x,15,
+            100,60
+        ]
+        return returnList
 
-def drawTimer():
     background = Rect(
         0,0,
         400,95,
-        fill=rgb(175,175,175)
+        fill=colors.gray
     )
     borderBottom = Rect(
         0,90,
         400,10,
-        fill=rgb(100,100,100)
+        fill=colors.darkGray
     )
 
-    
+    restartButton = Rect(
+        175,15,
+        50,60,
+        fill=colors.darkGray
+    )
+    restartButtonLabel = Label(
+        restartLabel,
+        restartButton.centerX,restartButton.centerY,
+        font="arial",
+        size=35
+    )
+    restartButtonLabel.rotate(90, restartButton.centerX, restartButton.centerY)
+    global restart; restart = Group( restartButton, restartButtonLabel )
+
+    clockBackground = Rect( *magicLengthReducer1(50), fill=colors.darkGray )
+    # NOTE: the clocks label is drawn in a separate function
+
+    flagBackground = Rect( *magicLengthReducer1(250), fill=colors.darkGray )
+    # NOTE: the flag count is drawn in a separate function
 
 def generateBoard():
     num = 0
@@ -87,16 +116,22 @@ def onMousePress(x, y):
                     if adjTile>(len(topSquares)-1) or adjTile<0: continue
                     if not mines[adjTile] and abs((adjTile % cols) - (i % cols)) <= 1 and topSquares[adjTile].visible == True:
                         onMousePress(topSquares[adjTile].centerX,topSquares[adjTile].centerY)
-                
             break
 
+    # restarts the game
+    ## TODO: figure out why it only closes the
+    ## program and not restarts it
+    # if restart.hits(x, y): Utils.restart()
+
 def onKeyRelease(key):
-    if key == 'r':
-        python = sys.executable
-        os.execl(python, python, *sys.argv)
+    # restarts the game
+    if key == 'r': Utils.restart()
+    # closes the game
+    if key == 'x': exit()
 
 
 generateBoard()
 generateMines()
-drawTimer()
+drawTopBar()
+
 cmu_graphics.run() # type: ignore
