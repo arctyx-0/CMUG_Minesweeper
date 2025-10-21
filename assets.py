@@ -5,7 +5,7 @@ from cmu_graphics import Group, Circle, Line
 
 @dataclass
 class Assets:
-    def  mine(x, y, scale) -> Group:
+    def  mine(x: int, y: int, scale: float) -> Group:
         mineBody = Circle(
             x,y,
             100*scale
