@@ -1,62 +1,62 @@
 from dataclasses import dataclass
 from random import randint
 
-from cmu_graphics import Group, Circle, Line
+from cmu_graphics import Group, Circle, Line, Polygon
 
 @dataclass
 class Assets:
-    def mine(x: int, y: int, scale: float = 1.0, 
+    def mine(self, x: int, y: int, scale: float = 1.0, 
              doSetRotation: bool = False, setRotation: int = 0, doRandomRotation: bool = False) -> Group:
     
-    mineBody = Circle(
-        x,y,
-        100*scale
-    )
-    mineSpoke_NS = Line(
-        x,y-(150*scale),
-        x,y+(150*scale),
-        lineWidth=20*(scale*1.4)
-    )
-    mineSpoke_EW = Line(
-        x-150*scale,y,
-        x+150*scale,y,
-        lineWidth=20*(scale*1.4)
-    )
-    mineSpoke_NWSE = Line(
-        x-100*scale,y-100*scale,
-        x+100*scale,y+100*scale,
-        lineWidth=20*(scale*1.4)
-    )
-    mineSpoke_NESW = Line(
-        x+100*scale,y-100*scale,
-        x-100*scale,y+100*scale,
-        lineWidth=20*(scale*1.4)
-    )
-    reflection = Circle(
-        random.randint(int(x-50*scale),int(x+50*scale)),
-        random.randint(int(y-50*scale),int(y+50*scale)),
-        30*(scale*0.9),
-        fill="white"
-    )
-    
-    mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
+        mineBody = Circle(
+            x,y,
+            100*scale
+        )
+        mineSpoke_NS = Line(
+            x,y-(150*scale),
+            x,y+(150*scale),
+            lineWidth=20*(scale*1.4)
+        )
+        mineSpoke_EW = Line(
+            x-150*scale,y,
+            x+150*scale,y,
+            lineWidth=20*(scale*1.4)
+        )
+        mineSpoke_NWSE = Line(
+            x-100*scale,y-100*scale,
+            x+100*scale,y+100*scale,
+            lineWidth=20*(scale*1.4)
+        )
+        mineSpoke_NESW = Line(
+            x+100*scale,y-100*scale,
+            x-100*scale,y+100*scale,
+            lineWidth=20*(scale*1.4)
+        )
+        reflection = Circle(
+            randint(int(x-50*scale),int(x+50*scale)),
+            randint(int(y-50*scale),int(y+50*scale)),
+            30*(scale*0.9),
+            fill="white"
+        )
+        
+        mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
 
-    # default rotation, do not change 
-    mineSprite.rotate(45, mineBody.centerX, mineBody.centerY)
-    
-    if doSetRotation == True:
-        mineSprite.rotate(setRotation, mineBody.centerX, mineBody.centerY)
-    else:
-        pass
-    
-    if doRandomRotation == True:
-        mineSprite.rotate(random.randint(0,359), mineBody.centerX, mineBody.centerY)
-    else: 
-        pass
-    
-    return mineSprite
+        # default rotation, do not change 
+        mineSprite.rotate(45, mineBody.centerX, mineBody.centerY)
+        
+        if doSetRotation == True:
+            mineSprite.rotate(setRotation, mineBody.centerX, mineBody.centerY)
+        else:
+            pass
+        
+        if doRandomRotation == True:
+            mineSprite.rotate(randint(0,359), mineBody.centerX, mineBody.centerY)
+        else: 
+            pass
+        
+        return mineSprite
 
-    def flag(x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
+    def flag(self, x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
         pole = Line(
             x,y,
             x,y+(100*scale),
