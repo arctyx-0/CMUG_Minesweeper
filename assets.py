@@ -40,8 +40,19 @@ class Assets:
         mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
         return mineSprite
     
-    def flag(x: int, y: int, scale: float) -> Group:
-        raise NotImplementedError("Sprite in development")
+    def flag(x: int, y: int, scale: float, flagColor: str = "red") -> Group:
+        pole = Line(
+            x,y,
+            x,y+(100*scale),
+            lineWidth=13*scale
+        )
         
-        '''flagSpirte = Group(  )
-        return flagSpirte'''
+        flag = Polygon(
+            x+(pole.lineWidth/2)*scale,y,
+            x+(pole.lineWidth/2)*scale,y+((pole.y2/5)*scale),
+            x+(50*scale),y+((pole.y2/10)*scale),
+            fill=flagColor
+        )
+        
+        flagSprite = Group( flag, pole )
+        return flagSprite
