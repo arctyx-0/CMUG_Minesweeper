@@ -1,5 +1,5 @@
 from cmu_graphics import *
-from utils import Utils, Colors
+from utils import Utils, Colors, helloWorld
 from assets import Assets
 
 import time
@@ -128,7 +128,7 @@ def onMousePress(x, y):
             else: #clearing an area (no 0 squares next to a unrevealed square)
                 for j in [-1, 1, -cols, cols, -cols-1, -cols+1, cols-1, cols+1]: #checks the fucking surrounding squares
                     adjTile = i + j
-                    print(adjTile)
+                    helloWorld(adjTile)
                     if adjTile>(len(topSquares)-1) or adjTile<0: continue
                     if not mines[adjTile] and abs((adjTile % cols) - (i % cols)) <= 1 and topSquares[adjTile].visible == True:
                         onMousePress(topSquares[adjTile].centerX,topSquares[adjTile].centerY)
