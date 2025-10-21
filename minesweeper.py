@@ -1,5 +1,6 @@
 from cmu_graphics import *
 from utils import Utils, Colors
+from assets import Assets
 
 import time
 import random
@@ -106,9 +107,24 @@ def onMousePress(x, y):
         if topSquares[i].contains(x, y):
             topSquares[i].visible = False
             if mines[i]:
-                Label('boom', squares[i].centerX, squares[i].centerY, size=20)
+                #Label('boom', squares[i].centerX, squares[i].centerY, size=20, fill=Colors.red)
+                Assets.mine(
+                    squares[i].centerX, 
+                    squares[i].centerY, 
+                    scale=0.11, 
+                    doRandomRotation=True
+                )
             elif numbers[i] > 0:
-                Label(str(numbers[i]), squares[i].centerX, squares[i].centerY, size=20)
+                numberLabel = Label(numbers[i], squares[i].centerX, squares[i].centerY, size=20)
+                if numberLabel.value == 1: numberLabel.fill = Colors.number.one
+                elif numberLabel.value == 2: numberLabel.fill = Colors.number.two
+                elif numberLabel.value == 3: numberLabel.fill = Colors.number.three
+                elif numberLabel.value == 4: numberLabel.fill = Colors.number.four
+                elif numberLabel.value == 5: numberLabel.fill = Colors.number.five
+                elif numberLabel.value == 6: numberLabel.fill = Colors.number.six
+                elif numberLabel.value == 7: numberLabel.fill = Colors.number.seven
+                elif numberLabel.value == 8: numberLabel.fill = Colors.number.eight
+                else: numberLabel.fill = None
             else: #clearing an area (no 0 squares next to a unrevealed square)
                 for j in [-1, 1, -cols, cols, -cols-1, -cols+1, cols-1, cols+1]: #checks the fucking surrounding squares
                     adjTile = i + j
