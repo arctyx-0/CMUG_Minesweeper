@@ -1,6 +1,5 @@
 from cmu_graphics import *
-from colors import colors
-from utils import Utils
+from utils import Utils, Colors
 
 import time
 import random
@@ -38,32 +37,33 @@ def drawTopBar():
     background = Rect(
         0,0,
         400,95,
-        fill=colors.gray
+        fill=Colors.gray
     )
     borderBottom = Rect(
         0,90,
         400,10,
-        fill=colors.darkGray
+        fill=Colors.darkGray
     )
 
     restartButton = Rect(
         175,15,
         50,60,
-        fill=colors.darkGray
+        fill=Colors.darkGray
     )
     restartButtonLabel = Label(
         restartLabel,
         restartButton.centerX,restartButton.centerY,
         font="arial",
+        fill=Colors.red,
         size=35
     )
     restartButtonLabel.rotate(90, restartButton.centerX, restartButton.centerY)
     global restart; restart = Group( restartButton, restartButtonLabel )
 
-    clockBackground = Rect( *magicLengthReducer1(50), fill=colors.darkGray )
+    clockBackground = Rect( *magicLengthReducer1(50), fill=Colors.darkGray )
     # NOTE: the clocks label is drawn in a separate function
 
-    flagBackground = Rect( *magicLengthReducer1(250), fill=colors.darkGray )
+    flagBackground = Rect( *magicLengthReducer1(250), fill=Colors.darkGray )
     # NOTE: the flag count is drawn in a separate function
 
 def generateBoard():
