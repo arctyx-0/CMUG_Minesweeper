@@ -1,9 +1,10 @@
 from cmu_graphics import *
+from utils import Utils, Colors
+utils = Utils()
 
-from utils import Utils, Colors, helloWorld
 from assets import Assets
+assets = Assets()
 
-import time
 import random
 import sys
 import os
@@ -109,7 +110,7 @@ def onMousePress(x, y):
             topSquares[i].visible = False
             if mines[i]:
                 #Label('boom', squares[i].centerX, squares[i].centerY, size=20, fill=Colors.red)
-                Assets.mine(
+                assets.mine( # type: ignore
                     squares[i].centerX, 
                     squares[i].centerY, 
                     scale=0.11, 
@@ -129,7 +130,7 @@ def onMousePress(x, y):
             else: #clearing an area (no 0 squares next to a unrevealed square)
                 for j in [-1, 1, -cols, cols, -cols-1, -cols+1, cols-1, cols+1]: #checks the fucking surrounding squares
                     adjTile = i + j
-                    helloWorld(adjTile)
+                    print(adjTile)
                     if adjTile>(len(topSquares)-1) or adjTile<0: continue
                     if not mines[adjTile] and abs((adjTile % cols) - (i % cols)) <= 1 and topSquares[adjTile].visible == True:
                         onMousePress(topSquares[adjTile].centerX,topSquares[adjTile].centerY)
@@ -142,13 +143,13 @@ def onMousePress(x, y):
 
 def onKeyRelease(key):
     # restarts the game
-    if key == 'r': Utils.restart()
+    if key == 'r': utils.restart() # type: ignore
     # closes the game
     if key == 'x': exit()
 
+if __name__ == '__main__':
+    generateBoard()
+    generateMines()
+    drawTopBar()
 
-generateBoard()
-generateMines()
-drawTopBar()
-
-cmu_graphics.run() # type: ignore
+    cmu_graphics.run() # type: ignore
