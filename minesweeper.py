@@ -1,8 +1,10 @@
 from cmu_graphics import *
 from utils import Utils, Colors
-from assets import Assets
+utils = Utils()
 
-import time
+from assets import Assets
+assets = Assets()
+
 import random
 import sys
 import os
@@ -108,7 +110,7 @@ def onMousePress(x, y):
             topSquares[i].visible = False
             if mines[i]:
                 #Label('boom', squares[i].centerX, squares[i].centerY, size=20, fill=Colors.red)
-                Assets.mine(
+                assets.mine( # type: ignore
                     squares[i].centerX, 
                     squares[i].centerY, 
                     scale=0.11, 
@@ -141,13 +143,13 @@ def onMousePress(x, y):
 
 def onKeyRelease(key):
     # restarts the game
-    if key == 'r': Utils.restart()
+    if key == 'r': utils.restart() # type: ignore
     # closes the game
     if key == 'x': exit()
 
+if __name__ == '__main__':
+    generateBoard()
+    generateMines()
+    drawTopBar()
 
-generateBoard()
-generateMines()
-drawTopBar()
-
-cmu_graphics.run() # type: ignore
+    cmu_graphics.run() # type: ignore

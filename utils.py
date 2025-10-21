@@ -4,8 +4,9 @@ import sys
 from dataclasses import dataclass
 from cmu_graphics import rgb
 
+@dataclass
 class Utils:
-    def restart():
+    def restart(self):
         if sys.platform == 'darwin':
             os.execl(sys.executable, sys.executable, *sys.argv)
         elif sys.platform == 'win32':
@@ -22,7 +23,7 @@ class Colors:
     # number colors
     class number:
         one   = rgb(3,119,252)
-        two   = rgb(30,227,62)
+        two   = rgb(30,187,62)
         three = rgb(227,30,30)
         four  = rgb(45,19,161)
         five  = rgb(140,14,14)
