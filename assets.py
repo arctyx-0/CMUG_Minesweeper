@@ -6,13 +6,12 @@ from cmu_graphics import Group, Circle, Line
 @dataclass
 class Assets:
     def mine(x: int, y: int, scale: float, 
-         doSetRotation: bool = False, setRotation: int = 0, doRandomRotation: bool = False) -> Group:
+             doSetRotation: bool = False, setRotation: int = 0, doRandomRotation: bool = False) -> Group:
     
     mineBody = Circle(
         x,y,
         100*scale
     )
-    
     mineSpoke_NS = Line(
         x,y-(150*scale),
         x,y+(150*scale),
@@ -41,7 +40,8 @@ class Assets:
     )
     
     mineSprite = Group( mineBody, mineSpoke_NS, mineSpoke_EW, mineSpoke_NWSE, mineSpoke_NESW, reflection )
-    
+
+    # default rotation, do not change 
     mineSprite.rotate(45, mineBody.centerX, mineBody.centerY)
     
     if doSetRotation == True:
