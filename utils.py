@@ -4,6 +4,9 @@ import sys
 from dataclasses import dataclass
 from cmu_graphics import rgb
 
+def helloWorld(*print): 
+    print(*print)
+
 class Utils:
     def restart():
         if sys.platform == 'darwin':
