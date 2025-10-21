@@ -1,5 +1,6 @@
 from cmu_graphics import *
 from utils import Utils, Colors
+from assets import Assets
 
 import time
 import random
