@@ -18,3 +18,14 @@ class Colors:
     darkerGray = rgb(80,80,80)
 
     red = rgb(245,20,30)
+
+    # number colors
+    class number:
+        one   = rgb(3,119,252)
+        two   = rgb(30,227,62)
+        three = rgb(227,30,30)
+        four  = rgb(45,19,161)
+        five  = rgb(140,14,14)
+        six   = rgb(21,149,161)
+        seven = rgb(133,29,171)
+        eight = rgb(112,112,112)
