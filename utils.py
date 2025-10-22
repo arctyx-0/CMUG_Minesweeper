@@ -22,6 +22,7 @@ class Colors:
     red = rgb(245,20,30)
 
     # number colors
+    @dataclass
     class number:
         one   = rgb(3,119,252)
         two   = rgb(30,187,62)
