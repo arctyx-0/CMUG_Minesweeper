@@ -58,7 +58,7 @@ class Assets:
         return mineSprite
 
     @staticmethod
-    def flag(x: int, y: int, scale: float = 1.0, flagColor: str|rgb = "red") -> Group:
+    def flag(x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
         pole = Line(
             x,y,
             x,y+(100*scale),
