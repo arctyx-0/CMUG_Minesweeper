@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from random import randint
 
-from cmu_graphics import Group, Circle, Line, Polygon
+from cmu_graphics import Group, Circle, Line, Polygon, rgb
 
 @dataclass
 class Assets:
@@ -58,7 +58,7 @@ class Assets:
         return mineSprite
 
     @staticmethod
-    def flag(x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
+    def flag(x: int, y: int, scale: float = 1.0, flagColor: str|rgb = "red") -> Group:
         pole = Line(
             x,y,
             x,y+(100*scale),
