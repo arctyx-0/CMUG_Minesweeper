@@ -5,7 +5,8 @@ from cmu_graphics import Group, Circle, Line, Polygon
 
 @dataclass
 class Assets:
-    def mine(self, x: int, y: int, scale: float = 1.0, 
+    @staticmethod
+    def mine(x: int, y: int, scale: float = 1.0, 
              doSetRotation: bool = False, setRotation: int = 0, doRandomRotation: bool = False) -> Group:
     
         mineBody = Circle(
@@ -56,7 +57,8 @@ class Assets:
         
         return mineSprite
 
-    def flag(self, x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
+    @staticmethod
+    def flag(x: int, y: int, scale: float = 1.0, flagColor: str = "red") -> Group:
         pole = Line(
             x,y,
             x,y+(100*scale),
