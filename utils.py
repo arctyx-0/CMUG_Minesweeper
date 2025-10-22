@@ -6,7 +6,8 @@ from cmu_graphics import rgb
 
 @dataclass
 class Utils:
-    def restart(self):
+    @staticmethod
+    def restart():
         if sys.platform == 'darwin':
             os.execl(sys.executable, sys.executable, *sys.argv)
         elif sys.platform == 'win32':
